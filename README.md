@@ -6,3 +6,4 @@ Technology used:
 
 * Node.js & npm
 * Express.js
+* JADE
