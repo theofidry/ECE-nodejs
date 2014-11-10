@@ -1,0 +1,22 @@
+{
+  "name": "HelloWorld",
+  "version": "0.0.0",
+  "description": "Hellow World project in node.js for Asynchronous Server Technologies course at ECE Paris.",
+  "main": "index.js",
+  "bin": {
+    "HelloWorld": "start.js"
+  },
+  "dependencies": {
+    "express": "^4.10.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
+  },
+  "author": "Theo FIDRY",
+  "license": "ISC"
+}
