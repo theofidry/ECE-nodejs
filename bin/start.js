@@ -1,4 +1,11 @@
-var app = require('../lib/app.js')
+// Load application module
+var app = require('../lib/app.js');
 
-app.listen(1337);
-console.log('Server running at http://localhost:1337');
+// Start server
+var server = app.listen(1337, 'localhost', function () {
+
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('Server running at http://%s:%s', host, port)
+});

@@ -8,9 +8,12 @@
   },
   "dependencies": {
     "express": "^4.10.2",
-    "jade": "^1.7.0"
+    "jade": "^1.7.0",
+    "stylus": "^0.49.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nid": "^0.3.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
