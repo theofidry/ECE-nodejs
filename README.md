@@ -54,7 +54,7 @@ npm update
 
 ## Grunt tasks
 
-### Publish assetsg
+### Publish assets
 
 ```bash
 // CSS

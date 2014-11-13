@@ -1,5 +1,5 @@
 // Load application module
-var app = require('../lib/app.js');
+var app = require('../lib/app');
 
 // Start server
 var server = app.listen(1337, 'localhost', function () {
