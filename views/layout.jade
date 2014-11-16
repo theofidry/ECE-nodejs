@@ -6,6 +6,10 @@ html
     body
         header
             h1 My Site
+            form(name="login", action="/login", method="post")
+              input(type="text", name="user")
+              input(type="password", name="pass")
+              input(type="submit", value="login")
         .container
             .main-content
                 block content
