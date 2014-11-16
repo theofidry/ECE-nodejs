@@ -52,6 +52,11 @@ Update the project:
 npm update
 ```
 
+For development purpose, install the development dependencies:
+```bash
+npm update --save-dev
+```
+
 ## Grunt tasks
 
 ### Publish assets

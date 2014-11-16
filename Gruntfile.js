@@ -1,6 +1,9 @@
-'use strict';
-
+/**
+ * Grunt tasks configuration file.
+ */
 module.exports = function(grunt) {
+
+    'use strict';
 
     // Project configuration.
     grunt.initConfig({
@@ -12,19 +15,19 @@ module.exports = function(grunt) {
                     lineos: true
                 },
                 files: {
-                    'public/app.css': 'views/styl/app.styl'
+                    'public/app.css': 'assets/styl/app.styl'
                 }
             },
             prod: {
                 files: {
-                    'public/app.css': 'views/styl/app.styl'
+                    'public/app.css': 'assets/styl/app.styl'
                 }
             }
         },
 
         watch: {
             scripts: {
-                files: ['views/styl/**/*.styl'],
+                files: ['assets/styl/**/*.styl'],
                 tasks: ['stylus:dev'],
                 options: {
                     spawn: false    // for faster processing
