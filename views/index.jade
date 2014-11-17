@@ -7,7 +7,9 @@ block content
         h2.form-signin-heading
             | Please sign in
         label.sr-only(for='username') Username:#{' '}
-        input#username.form-control(type='text', name='username', placeholder='Username', required)
+        input#username.form-control(type='text', name='username', pattern='[A-Za-z]{1,32}', placeholder='Username',
+        required)
         label.sr-only(for'passowrd') Password:#{' '}
-        input#password.form-control(type='password', name='password', placeholder='password', required)
+        input#password.form-control(type='password', name='password', pattern='.{4,32}',
+        placeholder='password', required)
         button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign in
