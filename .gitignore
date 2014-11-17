@@ -1,5 +1,5 @@
 # Compiled assets
-public/app.css
+#public/app.css -> for Windows which does not support Grunt symlinks...
 assets/styl/lib
 assets/styl/app.css
 assets/fonts/glyphicons-halflings-regular.*
