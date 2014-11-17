@@ -1,5 +1,8 @@
 # Compiled assets
-public
+public/app.css
+assets/styl/lib
+assets/styl/app.css
+assets/fonts/glyphicons-halflings-regular.*
 
 # Created by https://www.gitignore.io
 
