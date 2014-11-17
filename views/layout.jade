@@ -4,27 +4,10 @@ html(lang="en")
         title #{title}
         link(rel='stylesheet', href='app.css')
     body
-        header
-            nav.navbar.navbar-default.navbar-fixed-top
-                .container
-                    .navbar-header
-                        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar')
-                            span.sr-only
-                                | Toggle navigation
-                            span.icon-bar
-                            span.icon-bar
-                            span.icon-bar
-                        a.navbar-brand(href='/') AST - TP
-                    #navbar.collapse.navbar-collapse
-                        ul.nav.navbar-nav
-                            li.active: a(href='/') Home
+        .bgrd-img
+        include ./includes/header.jade
+
         #content.container
             block content
-        footer#footer.footer
-            .container
-                p.text-muted
-                    | ECE Paris project done by#{' '}
-                    a(href='https://github.com/theofidry') Théo FIDRY
-                    | #{' '}and#{' '}
-                    a(href='https://github.com/Estellou') Estelle LATRONICO
-                    | .
+
+        include ./includes/footer.jade

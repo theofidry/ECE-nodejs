@@ -78,5 +78,9 @@ grunt watch
 
 # Contributors
 
-* Estelle LATRONICO
+* [Estelle LATRONICO](https://github/Estellou)
 * [Théo FIDRY](https://github.com/theofidry)
+
+# License
+ 
+Copyright © 2014, [Théo FIDRY](https://github.com/theofidry), ISC License.
