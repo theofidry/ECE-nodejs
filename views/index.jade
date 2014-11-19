@@ -7,6 +7,8 @@ block content
         h2.form-signin-heading
             | Please sign in
         label.sr-only(for='username') Username:#{' '}
+        //TODO: change the pattern of the username contrôle to allow points or -, ex to do "theo.fidry" or "theo-fidry"
+        ex to allow "theo.fidry"...
         input#username.form-control(type='text', name='username', pattern='[A-Za-z]{1,32}', placeholder='Username',
         required)
         label.sr-only(for'passowrd') Password:#{' '}
