@@ -6,6 +6,9 @@ block content
     form.form-signin(role='form', action='/', method='post')
         h2.form-signin-heading
             | Please sign in
+        if errors !== undefined
+          if errors.msg !== undefined
+            p #{errors.msg}
         label.sr-only(for='username') Username:#{' '}
         input#username.form-control(type='text', name='username', pattern='[A-Za-z]{1,32}', placeholder='Username',
         required)
@@ -13,3 +16,5 @@ block content
         input#password.form-control(type='password', name='password', pattern='.{4,32}',
         placeholder='password', required)
         button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign in
+    
+      
