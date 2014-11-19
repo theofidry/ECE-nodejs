@@ -6,6 +6,9 @@ block content
     form.form-signin(role='form', action='/', method='post')
         h2.form-signin-heading
             | Please sign in
+        if errors !== undefined
+          if errors.msg !== undefined
+            p #{errors.msg}
         label.sr-only(for='username') Username:#{' '}
         //TODO: change the pattern of the username contrôle to allow points or -, ex to do "theo.fidry" or "theo-fidry"
         ex to allow "theo.fidry"...
@@ -15,3 +18,5 @@ block content
         input#password.form-control(type='password', name='password', pattern='.{4,32}',
         placeholder='password', required)
         button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign in
+    
+      
