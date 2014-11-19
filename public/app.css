@@ -46,7 +46,7 @@
   bottom: 0;
   height: 60px;
   left: 0;
-  position: absolute;
+  position: fixed;
   right: 0;
   line-height: 60px;
 }
@@ -67,18 +67,19 @@
 }
 .error-page {
   background: linear-gradient(45deg, #184482 0%, #155da6 53%, #1671aa 99%);
-  bottom: 0;
-  left: 0;
-  padding-top: 100px;
-  position: absolute;
-  right: 0;
+  display: table;
+  height: 100%;
+  position: fixed;
   text-align: center;
-  top: 0;
-  width: auto;
+  width: 100%;
 }
 .error-page,
 .error-page h1,
 .error-page p {
   color: #fff;
   text-shadow: 1px 1px 2px #2b2b2b;
+}
+.error-msg {
+  display: table-cell;
+  vertical-align: middle;
 }
