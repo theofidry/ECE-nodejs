@@ -8,6 +8,7 @@ Technology used:
 * [Grunt](http://gruntjs.com/)
 * [Node.js & npm](http://nodejs.org/)
 * [JADE](http://jade-lang.com/)
+* [Stylus](http://learnboost.github.io/stylus/)
 
 # Project
 

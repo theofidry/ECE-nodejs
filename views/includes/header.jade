@@ -12,4 +12,10 @@ header#header
                     img(src='/img/logos/ECE.png')
             #navbar.collapse.navbar-collapse
                 ul.nav.navbar-nav
-                    li.active: a(href='/') Home
+                    if (session !== true)
+                        li#home.active: a(href='/') Home
+                    else
+                        li#home.active: a(href='/user/#{username}') Dashboard
+                if (session === true)
+                    ul.nav.navbar-nav.navbar-right
+                        li#logout: a(href='/logout') Log out
