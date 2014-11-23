@@ -8,6 +8,10 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
 
+        clean: {
+            css: ['assets/styl/app.css']
+        },
+
         concat: {
             options: {
                 separator: '\n'
@@ -65,6 +69,7 @@ module.exports = function(grunt) {
     });
 
     // Load plugins
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-symlink');
@@ -72,8 +77,8 @@ module.exports = function(grunt) {
 
 
     // Custom tasks
-    grunt.registerTask('css', ['stylus:dev', 'concat']);
-    grunt.registerTask('css-prod', ['stylus:prod', 'concat']);
+    grunt.registerTask('css', ['stylus:dev', 'concat', 'clean:css']);
+    grunt.registerTask('css-prod', ['stylus:prod', 'concat', 'clean:css']);
 
     grunt.registerTask('build', ['css']);
     grunt.registerTask('publish', ['css-prod']);

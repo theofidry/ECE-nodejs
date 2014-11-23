@@ -6,17 +6,25 @@ block content
     form.form-signin(role='form', action='/', method='post')
         h2.form-signin-heading
             | Please sign in
-        if errors !== undefined
-          if errors.msg !== undefined
-            p #{errors.msg}
+        if errors !== undefined && errors.msg !== undefined
+            p.bg-danger #{errors.msg}
         label.sr-only(for='username') Username:#{' '}
+        if errors !== undefined && errors.user === true
+            input#username.form-control.has-error(type='text', name='username', pattern='[A-Za-z]{2,32}',
+            placeholder='Username',
+            required)
+        else
+            input#username.form-control(type='text', name='username', pattern='[A-Za-z]{2,32}',
+            placeholder='Username', required)
         //TODO: change the pattern of the username contrôle to allow points or -, ex to do "theo.fidry" or "theo-fidry"
         //ex to allow "theo.fidry"...
-        input#username.form-control(type='text', name='username', pattern='[A-Za-z]{2,32}', placeholder='Username',
+        label.sr-only(for'password') Password:#{' '}
+        if errors !== undefined && errors.password === true
+            input#password.form-control.has-error(type='password', name='password', pattern='.{4,32}', placeholder='password',
+            required)
+        else
+            input#password.form-control(type='password', name='password', pattern='.{4,32}', placeholder='password',
         required)
-        label.sr-only(for'passowrd') Password:#{' '}
-        input#password.form-control(type='password', name='password', pattern='.{4,32}',
-        placeholder='password', required)
         button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign in
     
       
