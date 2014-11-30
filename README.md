@@ -14,6 +14,8 @@ Technology used:
 
 Do a login page using the framework Express.js and JADE template engine.
 
+Default admin user: admin | admin
+
 ## Architecture
 
 ```
