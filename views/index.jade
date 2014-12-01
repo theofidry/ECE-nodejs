@@ -3,7 +3,7 @@ extend layout
 block content
     h1.page-header
         | Login to access to secure session.
-    form.form-signin(role='form', action='/', method='post')
+    form#login.form-signin(role='form', action='/', method='post')
         h2.form-signin-heading
             | Please sign in
         if errors !== undefined && errors.msg !== undefined
