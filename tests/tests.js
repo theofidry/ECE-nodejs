@@ -1,8 +1,50 @@
 var globals = require(__dirname + '/../lib/config/globals'),
-    db = require(__dirname + '/../lib/config/db')(globals),
     expect = require('expect.js');
 
-//describe('express rest api server', function(){
+describe('Test web app', function () {
+
+    describe('Not logged in user', function () {
+
+        it('can access access to not "auth" pages', function () {
+            //TODO
+        });
+
+        it('cannot access to "auth" pages', function () {
+            //TODO
+        });
+
+        describe('Login', function () {
+
+            it('must provide valid credentials', function () {
+                //TODO
+            });
+
+            it('can log in with user name', function () {
+                //TODO
+            });
+
+            it('can log in with password', function () {
+                //TODO
+            });
+        })
+    });
+
+    describe('Logged in user', function () {
+
+        it('cannot access to log in page', function () {
+            //TODO
+        });
+
+        it('can access to "auth" page', function () {
+            //TODO
+        });
+
+        it('can log out', function () {
+            //TODO
+        });
+    });
+
+    //describe('express rest api server', function(){
 //    var id
 //
 //    it('post object', function(done){
@@ -20,83 +62,209 @@ var globals = require(__dirname + '/../lib/config/globals'),
 //            })
 //    })
 //}
-
-describe('Database setup', function () {
-
-    it('has admin user', function () {
-        db.get('user:admin', function (err, value) {
-
-            expect(value).to.be.an('object');
-            expect(value.name).to.be(globals.admin.name);
-            expect(value.password).to.be(globals.admin.password);
-        });
-    })
 });
 
-describe('Users', function () {
+describe('Test database', function () {
 
-    var user = {
-        name:     'john',
-        password: 'dummy'
-    };
+    // Helper to load the database faster
+    function getDb(globals, path) {
+        return require(__dirname + '/../lib/config/db')(globals, path);
+    }
 
-    it('can get admin user', function () {
+    // Valid test database
+    require(__dirname + '/../lib/config/db')(globals, __dirname + '/db');
 
-        db.users.get('admin', function (err, value) {
+    describe('Database loading', function () {
 
-            expect(value.name).to.be(globals.admin.name);
-            expect(value.password).to.be(globals.admin.password)
-        });
-    });
+        var input = {
+            emptyValues: [
+                undefined,
+                null,
+                function () {},
+                {},
+                '',
+                0,
+                1,
+                0.9,
+                true,
+                false
+            ],
 
-    it('can add a user', function () {
+            validGlobals:   [
+                {
+                    name:     globals.name,
+                    password: globals.password
+                },
+                {
+                    name:     globals.name,
+                    password: globals.password,
+                    email:    'random@example.com'
+                }
+            ],
+            invalidGlobals: [
+                {
+                    name: globals.name
+                },
+                {
+                    password: globals.password,
+                    email:    'random@example.com'
+                }
+            ]
+        };
 
-        db.users.set(user, function () {
+        describe('requires a valid globals and path', function () {
 
-            // check if user is added
-            db.get('user' + user.name, function (err, value) {
-
-                console.log(value);
-                expect(value.name).to.be(user.name);
-                expect(value.password).to.be(user.password);
+            it('return null if invalid globals', function () {
+                //TODO
             });
 
-            // other way to test it
-            db.users.get(user.name, function (err, value) {
+            it('return null if valid globals without db attributes and invalid path', function () {
+                //TODO
+            });
 
-                console.log(value);
-                expect(value.name).to.be(user.name);
-                expect(value.password).to.be(user.password);
+            it('return something if valid globals with db attributes and invalid path', function () {
+                //TODO
+            });
+
+            it('return something if valid globals without db attributes and valid path', function () {
+                //TODO
+            });
+
+            it('return something if valid globals with db attributes and valid path', function () {
+                //TODO
             });
         });
     });
 
-    it('can retrieve this new user', function () {
+    describe('Database setup', function () {
 
-        db.users.get(user.name, function (err, value) {
-
-            expect(value.name).to.be(globals.admin.name);
-            expect(value.password).to.be(globals.admin.password)
-        });
-    });
-
-    it('can delete a user', function () {
-
-        db.users.del(user.name, function (err) {
-
-            if (err)
-                expect().fail();
-            else
-                db.users.get(user.name, function (err, value) {
-
-                    if (!err)
-                        expect.fail();
-                });
+        it('has admin user', function () {
+            //TODO
         })
-    })
-});
+    });
+
+    describe('Users API', function () {
+
+        describe('SET', function () {
+
+            it('can add a new user', function () {
+                //TODO
+            });
+
+            it('can update values of an existing user', function () {
+                //TODO
+            });
+
+            it('cannot update values of admin user', function () {
+                //TODO
+            });
+
+            it('can add new values to an existing user', function () {
+                //TODO
+            });
+
+            it('cannot add new values to admin user', function () {
+                //TODO
+            });
+
+            it('cannot add new values to non existing user', function () {
+                //TODO
+            });
+        });
+
+        describe('GET', function () {
+
+            it('can get admin user', function () {
+                //TODO
+            });
+
+            it('can get a user', function () {
+                //TODO
+            });
+
+            it('can get a user property', function () {
+                //TODO
+            });
+        });
+
+        describe('DEL', function () {
+
+            it('can delete a user', function () {
+                //TODO
+            });
+
+            it('cannot delete admin user', function () {
+
+            });
+        });
+    });
+
+//
+//    describe('Users', function () {
+//
+//        var user = {
+//            name:     'john',
+//            password: 'dummy'
+//        };
+//
+//        it('can get admin user', function () {
+//
+//            db.users.get('admin', function (err, value) {
+//
+//                expect(value.name).to.be(globals.admin.name);
+//                expect(value.password).to.be(globals.admin.password)
+//            });
+//        });
+//
+//        it('can add a user', function () {
+//
+//            db.users.set(user, function () {
+//
+//                // check if user is added
+//                db.get('user' + user.name, function (err, value) {
+//
+//                    console.log(value);
+//                    expect(value.name).to.be(user.name);
+//                    expect(value.password).to.be(user.password);
+//                });
+//
+//                // other way to test it
+//                db.users.get(user.name, function (err, value) {
+//
+//                    console.log(value);
+//                    expect(value.name).to.be(user.name);
+//                    expect(value.password).to.be(user.password);
+//                });
+//            });
+//        });
+//
+//        it('can retrieve this new user', function () {
+//
+//            db.users.get(user.name, function (err, value) {
+//
+//                expect(value.name).to.be(globals.admin.name);
+//                expect(value.password).to.be(globals.admin.password)
+//            });
+//        });
+//
+//        it('can delete a user', function () {
+//
+//            db.users.del(user.name, function (err) {
+//
+//                if (err)
+//                    expect().fail();
+//                else
+//                    db.users.get(user.name, function (err, value) {
+//
+//                        if (!err)
+//                            expect.fail();
+//                    });
+//            })
+//        })
+//    });
 
 //TODO: add tests with user formatting
 //TODO: add test with reserved username ex admin
 //TODO: add form test
 //TODO: test if database is properly closed
+});
