@@ -3,6 +3,13 @@ extend layout
 block content
     h1.page-header
         | Login to access to secure session.
+    .loader.hidden
+        .loader-wrapper.center-block
+            p Connecting
+            .spinner
+                .rect1
+                .rect2
+                .rect3
     form#login.form-signin(role='form', action='/', method='post')
         h2.form-signin-heading
             | Please sign in

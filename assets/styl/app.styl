@@ -84,3 +84,73 @@
 .error-msg
   display table-cell
   vertical-align middle
+
+.loader
+  background-color #fff
+  color #000
+  bottom 0
+  height auto
+  left 0
+  position fixed
+  right 0
+  top 0
+  width auto
+
+  p
+    padding-bottom 30px
+    text-align center
+    text-transform capitalize
+    font-size 24px
+    color #194A87
+
+.loader-wrapper
+  box-shadow 0 3px 10px #837D7D
+  border-radius 2px
+  margin 200px auto 0 auto
+  margin-left 40%
+  padding 50px
+  position absolute
+
+.spinner
+  margin 25px auto
+  width 40px
+  height 10px
+  font-size 10px
+
+  > div
+    height 100%
+    width 100%
+    display block
+    margin-bottom 0.6em
+    -webkit-animation stretchdelay 1.2s infinite ease-in-out
+    animation stretchdelay 1.2s infinite ease-in-out
+
+  .rect2
+    -webkit-animation-delay -1s
+    animation-delay -1s
+
+  .rect3
+    -webkit-animation-delay -0.8s
+    animation-delay -0.8s
+
+@-webkit-keyframes stretchdelay
+  0%, 40%, 100%
+    -webkit-transform scaleX(0.8)
+    background-color #184885
+    box-shadow 0 0 0 rgba(10, 10, 10, .1)
+  20%
+    -webkit-transform scaleX(1)
+    background-color #3BA2D8
+    box-shadow 0 5px 6px rgba(10, 10, 10, .4)
+
+@keyframes stretchdelay
+  0%, 40%, 100%
+    background-color #184885
+    transform scaleX(0.8)
+    -webkit-transform scaleX(0.8)
+    box-shadow 0 0 0 rgba(10, 10, 10, .1)
+  20%
+    background-color #3BA2D8
+    transform scaleY(1)
+    -webkit-transform scaleX(1)
+    box-shadow 0 5px 6px rgba(10, 10, 10, .4);
