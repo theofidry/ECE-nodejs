@@ -66,6 +66,13 @@ module.exports = function (grunt) {
 
         watch: {
             scripts: {
+                files:   ['assets/js/**/*'],
+                tasks:   ['js'],
+                options: {
+                    spawn: false    // for faster processing
+                }
+            },
+            styl: {
                 files:   ['assets/styl/**/*.styl'],
                 tasks:   ['css'],
                 options: {
