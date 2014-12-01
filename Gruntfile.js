@@ -1,7 +1,7 @@
 /**
  * Grunt tasks configuration file.
  */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     'use strict';
 
@@ -16,19 +16,34 @@ module.exports = function(grunt) {
             options: {
                 separator: '\n'
             },
-            dist: {
-                src: ['assets/styl/lib/*.css', 'assets/styl/app.css'],
+            dist:    {
+                src:  ['assets/styl/lib/*.css', 'assets/styl/app.css'],
                 dest: 'public/app.css'
             }
         },
 
+        copy: {
+            jquery: {
+                expand: true,
+                cwd:  'node_modules/jquery/dist',
+                src:  'jquery.min.js',
+                dest: 'public/js/'
+            },
+            js: {
+                expand: true,
+                cwd:  'assets/js',
+                src:  '*',
+                dest: 'public/js/'
+            }
+        },
+
         stylus: {
-            dev: {
+            dev:  {
                 options: {
                     compress: false,
-                    lineos: true
+                    lineos:   true
                 },
-                files: {
+                files:   {
                     'assets/styl/app.css': 'assets/styl/app.styl'
                 }
             },
@@ -43,24 +58,16 @@ module.exports = function(grunt) {
             options: {
                 overwrite: true
             },
-            tw_css: {
-                src: 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+            tw_css:  {
+                src:  'node_modules/bootstrap/dist/css/bootstrap.min.css',
                 dest: 'assets/styl/lib/bootstrap.css'
             }
-//            tw_fonts: {
-//                files: [{
-//                    expand:    true,
-//                    cwd:       'node_modules/bootstrap/dist/fonts',
-//                    src:       ['*'],
-//                    dest:      'assets/fonts'
-//                }]
-//            }
         },
 
         watch: {
             scripts: {
-                files: ['assets/styl/**/*.styl'],
-                tasks: ['css'],
+                files:   ['assets/styl/**/*.styl'],
+                tasks:   ['css'],
                 options: {
                     spawn: false    // for faster processing
                 }
@@ -71,6 +78,7 @@ module.exports = function(grunt) {
     // Load plugins
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-symlink');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -80,8 +88,11 @@ module.exports = function(grunt) {
     grunt.registerTask('css', ['stylus:dev', 'concat', 'clean:css']);
     grunt.registerTask('css-prod', ['stylus:prod', 'concat', 'clean:css']);
 
-    grunt.registerTask('build', ['css']);
-    grunt.registerTask('publish', ['css-prod']);
+    grunt.registerTask('js', ['copy:jquery', 'copy:js']);
+    grunt.registerTask('js-prod', ['copy:jquery', 'copy:js']);
+
+    grunt.registerTask('build', ['css', 'js']);
+    grunt.registerTask('publish', ['css-prod', 'js-prod']);
     grunt.registerTask('start', ['build', 'watch']);
 
     // Default tasks

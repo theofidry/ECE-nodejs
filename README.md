@@ -20,15 +20,16 @@ Default admin user: admin | admin
 
 ```
 .
-├── bin                   # executables
+├── styl                  # Stylus stylesheets
+|   ├── lib               # stylesheet libraries
+|   └── app.styl          # main Stylus stylesheet
+├── bin                   # executable
 |   └── start.js          # start the application
 ├── lib                   # core components
+|   ├── config            # App config
 |   └── app.js            # main file of the application
 ├── public                # web root
-└── views
-    ├── styl              # Stylus stylesheets
-    |   └── app.styl      # main Stylus stylesheet
-    └── tpl               # JADE templates
+└── views                 # JADE templates            
 ```
 
 ## Install
