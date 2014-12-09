@@ -1,5 +1,8 @@
 var globals = require(__dirname + '/../lib/config/globals'),
-    expect = require('expect.js');
+    expect  = require('expect.js');
+
+// Override globals db path for tests
+globals.db = __dirname + '/db';
 
 describe('Test web app', function () {
 
@@ -72,11 +75,11 @@ describe('Test database', function () {
     }
 
     // Valid test database
-    require(__dirname + '/../lib/config/db')(globals, __dirname + '/db');
+    //require(__dirname + '/../lib/config/db')(globals, __dirname + '/db');
 
     describe('Database loading', function () {
 
-        var input = {
+        var inputs = {
             emptyValues: [
                 undefined,
                 null,
@@ -93,17 +96,23 @@ describe('Test database', function () {
             validGlobals:   [
                 {
                     name:     globals.name,
-                    password: globals.password
+                    password: globals.password,
+                    email:    'random@example.com'
                 },
                 {
                     name:     globals.name,
                     password: globals.password,
-                    email:    'random@example.com'
+                    email:    'random@example.com',
+                    test:     'allo'
                 }
             ],
             invalidGlobals: [
                 {
                     name: globals.name
+                },
+                {
+                    name:     globals.name,
+                    password: globals.password,
                 },
                 {
                     password: globals.password,
@@ -115,19 +124,43 @@ describe('Test database', function () {
         describe('requires a valid globals and path', function () {
 
             it('return null if invalid globals', function () {
-                //TODO
-            });
 
-            it('return null if valid globals without db attributes and invalid path', function () {
-                //TODO
+                // test with empty values for globals
+                for (var key in inputs.emptyValues) {
+
+                    var db = getDb(inputs.emptyValues[key], __dirname + '/db')
+                    expect(db).to.be(null);
+                }
+
+                // test with invalid values for globals
+                for (var key in inputs.invalidGlobals) {
+
+                    var db = getDb(inputs.invalidGlobals[key], __dirname + '/db')
+                    expect(db).to.be(null);
+                }
             });
 
             it('return something if valid globals with db attributes and invalid path', function () {
-                //TODO
+
+                for (var key in inputs.emptyValues) {
+
+                    var db = getDb(globals, inputs.emptyValues[key])
+                    expect(db).to.not.be(null);
+                    db.close();
+                }
             });
 
-            it('return something if valid globals without db attributes and valid path', function () {
-                //TODO
+            it('return null if valid globals without db attributes and valid path', function () {
+
+                // test with empty values for globals
+                for (var k in inputs.validGlobals) {
+
+                    for (var l in inputs.emptyValues) {
+
+                        var db = getDb(inputs.validGlobals[k], inputs.emptyValues[l])
+                        expect(db).to.be(null);
+                    }
+                }
             });
 
             it('return something if valid globals with db attributes and valid path', function () {

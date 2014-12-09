@@ -10,6 +10,10 @@ Technology used:
 * [JADE](http://jade-lang.com/)
 * [Stylus](http://learnboost.github.io/stylus/)
 
+[Travis CI](https://travis-ci.org/theofidry/AST-HelloWorld) build status:
+
+[![Build Status](https://travis-ci.org/theofidry/AST-HelloWorld.svg)](https://travis-ci.org/theofidry/AST-HelloWorld)
+
 # Project
 
 Do a login page using the framework Express.js and JADE template engine.

@@ -25,15 +25,45 @@ module.exports = function (grunt) {
         copy: {
             jquery: {
                 expand: true,
-                cwd:  'node_modules/jquery/dist',
-                src:  'jquery.min.js',
-                dest: 'public/js/'
+                cwd:    'node_modules/jquery/dist',
+                src:    'jquery.min.js',
+                dest:   'public/js/'
             },
-            js: {
+            js:     {
                 expand: true,
-                cwd:  'assets/js',
-                src:  '*',
-                dest: 'public/js/'
+                cwd:    'assets/js',
+                src:    '*',
+                dest:   'public/js/'
+            }
+        },
+
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    // Require blanket wrapper here to instrument other required
+                    // files on the fly.
+                    //
+                    // NB. We cannot require blanket directly as it
+                    // detects that we are not running mocha cli and loads differently.
+                    //
+                    // NNB. As mocha is 'clever' enough to only run the tests once for
+                    // each file the following coverage task does not actually run any
+                    // tests which is why the coverage instrumentation has to be done here
+                    require: 'coverage/blanket'
+                },
+                src: ['test/**/*.js']
+            },
+            coverage: {
+                options: {
+                    reporter: 'html-cov',
+                    // use the quiet flag to suppress the mocha console output
+                    quiet: true,
+                    // specify a destination file to capture the mocha
+                    // output (the quiet option does not suppress this)
+                    captureFile: 'coverage.html'
+                },
+                src: ['test/**/*.js']
             }
         },
 
@@ -72,7 +102,7 @@ module.exports = function (grunt) {
                     spawn: false    // for faster processing
                 }
             },
-            styl: {
+            styl:    {
                 files:   ['assets/styl/**/*.styl'],
                 tasks:   ['css'],
                 options: {
@@ -89,6 +119,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-symlink');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-mocha-test');
 
 
     // Custom tasks
@@ -101,6 +132,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['css', 'js']);
     grunt.registerTask('publish', ['css-prod', 'js-prod']);
     grunt.registerTask('start', ['build', 'watch']);
+
+    grunt.registerTask('test', ['mochaTest']);
 
     // Default tasks
     grunt.registerTask('default', ['start']);
