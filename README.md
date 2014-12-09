@@ -10,9 +10,9 @@ Technology used:
 * [JADE](http://jade-lang.com/)
 * [Stylus](http://learnboost.github.io/stylus/)
 
-[Travis CI](https://travis-ci.org/theofidry/AST-HelloWorld) build status:
+Travis CI build status:
 
-[![Build Status](https://travis-ci.org/theofidry/AST-HelloWorld.svg)](https://travis-ci.org/theofidry/AST-HelloWorld)
+[![Build Status](https://travis-ci.org/theofidry/nodejs-ECEProject.svg?branch=master)](https://travis-ci.org/theofidry/nodejs-ECEProject)
 
 OpenShift hosted: [link](http://nodejs-eceproject.rhcloud.com/)
 
