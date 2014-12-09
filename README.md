@@ -14,6 +14,8 @@ Technology used:
 
 [![Build Status](https://travis-ci.org/theofidry/AST-HelloWorld.svg)](https://travis-ci.org/theofidry/AST-HelloWorld)
 
+OpenShift hosted: [link](http://nodejs-eceproject.rhcloud.com/)
+
 # Project
 
 Do a login page using the framework Express.js and JADE template engine.
