@@ -6,5 +6,5 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 // Start server
 var server = app.listen(port, host, function () {
-    console.log('Server running at http://%s:%s', port, host);
+    console.log('Server running at http://%s:%s', host, port);
 });

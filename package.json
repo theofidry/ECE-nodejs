@@ -39,7 +39,7 @@
     "start": "node bin/start.js",
     "test": "grunt test"
   },
-  "main": "lib/app.js",
+  "main": "bin/start.js",
   "repository": {
     "type": "git",
     "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
