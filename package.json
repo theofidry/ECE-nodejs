@@ -2,10 +2,6 @@
   "name": "HelloWorld",
   "version": "0.0.0",
   "description": "Hellow World project in node.js for Asynchronous Server Technologies course at ECE Paris.",
-  "main": "index.js",
-  "bin": {
-    "HelloWorld": "start.js"
-  },
   "dependencies": {
     "body-parser": "^1.9.2",
     "cookie-parser": "^1.3.3",
@@ -38,9 +34,12 @@
     "nid": "^0.3.2",
     "superagent": "^0.21.0"
   },
+  "bin": "bin/start.js",
   "scripts": {
+    "start": "node bin/start.js",
     "test": "grunt test"
   },
+  "main": "lib/app.js",
   "repository": {
     "type": "git",
     "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
