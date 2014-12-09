@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-- '0.11'
 - '0.10'
 before_install: npm install -g grunt-cli
 before_script: grunt build
@@ -9,7 +8,7 @@ deploy:
   user: theo.fidry@gmail.com
   password:
     secure: dUf62DTPLDW/Xl/2NcJ12C12yl4UBa52GlrSgjJ511C3TB0alUJ/+M1ZI3nKqRt6xfRvXWnJ2Qh5P+leTD5TmZfeN5gDzFDkJ6tv3asMl9HsCs5iZUdT93FTVkU0I1eeI/J/S2nzdWIfRy/FRF7Gjg2evRcofMv0VwU1b0IW8cM=
-  app: Nodejs-ECEProject
+  app: nodejs-ECEProject
   domain: eceproject
   on:
     repo: theofidry/AST-HelloWorld
