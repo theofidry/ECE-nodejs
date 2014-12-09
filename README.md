@@ -9,42 +9,34 @@ Technology used:
 * [Node.js & npm](http://nodejs.org/)
 * [JADE](http://jade-lang.com/)
 * [Stylus](http://learnboost.github.io/stylus/)
+* [LevelDB](https://github.com/google/leveldb)
 
 Travis CI build status:
 
 [![Build Status](https://travis-ci.org/theofidry/nodejs-ECEProject.svg?branch=master)](https://travis-ci.org/theofidry/nodejs-ECEProject)
 
-OpenShift hosted: [link](http://nodejs-eceproject.rhcloud.com/)
+Demo on OpenShift: [link](http://nodejs-eceproject.rhcloud.com/)
 
 # Project
 
 Do a login page using the framework Express.js and JADE template engine.
 
-Default admin user: admin | admin
 
-## Architecture
+## Getting started
 
+Clone this project:
+```bash
+git clone https://github.com/theofidry/nodejs-ECEProject.git
 ```
-.
-├── styl                  # Stylus stylesheets
-|   ├── lib               # stylesheet libraries
-|   └── app.styl          # main Stylus stylesheet
-├── bin                   # executable
-|   └── start.js          # start the application
-├── lib                   # core components
-|   ├── config            # App config
-|   └── app.js            # main file of the application
-├── public                # web root
-└── views                 # JADE templates            
-```
-
-## Install
-
-Clone this project.
 
 Install [node.js](http://nodejs.org/). Then install the project dependencies:
 ```bash
 npm install
+```
+
+Install [Grunt](http://gruntjs.com/):
+```bash
+npm install -g grunt
 ```
 
 Publish assets:
@@ -52,39 +44,20 @@ Publish assets:
 grunt publish
 ```
 
-Choose the port or the host to which the application listen, change the line 5 of ``bin/start.js``. Otherwise the default configuration is used which is ``localhost``for the host and ``1337``for the port.
-
-
-## Update
-
-Update the project:
+Start app:
 ```bash
-npm update
+npm start
 ```
 
-For development purpose, install the development dependencies:
-```bash
-npm update --save-dev
-```
+Default admin user: admin | admin
 
-## Grunt tasks
+If you wish to change the port the app is running on, just change them in the `bin/start.js` file. The default admin
+user may be changed in `lib/config/globals.js`.
 
-### Publish assets
 
-```bash
-// CSS
-grunt css       // prod
-grunt css-dev   // dev
+# More
 
-// Everything
-grunt publish   // prod
-grunt build     // dev
-```
-
-### Watch task
-```bash
-grunt watch
-```
+If you wish to have more info on the layout or on the dev environment (ex: Grunt tasks), check the [wiki](https://github.com/theofidry/nodejs-ECEProject/wiki)!
 
 # Contributors
 

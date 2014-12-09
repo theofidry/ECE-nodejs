@@ -1,5 +1,5 @@
 {
-  "name": "HelloWorld",
+  "name": "nodejs-ECEProject",
   "version": "0.0.0",
   "description": "Hellow World project in node.js for Asynchronous Server Technologies course at ECE Paris.",
   "dependencies": {
