@@ -4,6 +4,7 @@ var globals = require(__dirname + '/../lib/config/globals'),
 // Override globals db path for tests
 globals.db = __dirname + '/db';
 
+
 describe('Test web app', function () {
 
     describe('Not logged in user', function () {
@@ -95,28 +96,37 @@ describe('Test database', function () {
 
             validGlobals:   [
                 {
-                    name:     globals.name,
-                    password: globals.password,
-                    email:    'random@example.com'
+                    admin: {
+                        name:     globals.admin.name,
+                        password: globals.admin.password,
+                        email:    'random@example.com'
+                    }
                 },
                 {
-                    name:     globals.name,
-                    password: globals.password,
-                    email:    'random@example.com',
-                    test:     'allo'
+                    admin: {
+                        name:     globals.admin.name,
+                        password: globals.admin.password,
+                        email:    'random@example.com',
+                        test:     'allo'
+                    }
                 }
             ],
             invalidGlobals: [
                 {
-                    name: globals.name
+                    admin: {
+                        name: globals.admin.name
+                    }
                 },
                 {
-                    name:     globals.name,
-                    password: globals.password,
+                    admin: {
+                        password: globals.admin.password
+                    }
                 },
                 {
-                    password: globals.password,
-                    email:    'random@example.com'
+                    admin: {
+                        password: globals.admin.password,
+                        email:    'random@example.com'
+                    }
                 }
             ]
         };
@@ -128,21 +138,25 @@ describe('Test database', function () {
                 // test with empty values for globals
                 for (var key in inputs.emptyValues) {
 
-                    var db = getDb(inputs.emptyValues[key], __dirname + '/db')
+                    var db = getDb(inputs.emptyValues[key], globals.db)
                     expect(db).to.be(null);
                 }
 
                 // test with invalid values for globals
                 for (var key in inputs.invalidGlobals) {
 
-                    var db = getDb(inputs.invalidGlobals[key], __dirname + '/db')
+                    var db = getDb(inputs.invalidGlobals[key], globals.db)
                     expect(db).to.be(null);
                 }
             });
 
             it('return something if valid globals with db attributes and invalid path', function () {
 
+                var path = globals.db;
+
                 for (var key in inputs.emptyValues) {
+
+                    globals.db = path + '/sub120' + key;    // workaround to avoid lock database
 
                     var db = getDb(globals, inputs.emptyValues[key])
                     expect(db).to.not.be(null);
@@ -163,9 +177,19 @@ describe('Test database', function () {
                 }
             });
 
-            it('return something if valid globals with db attributes and valid path', function () {
-                //TODO
-            });
+            //it('return something if valid globals with db attributes and valid path', function () {
+            //
+            //    var path = globals.db;
+            //
+            //    for (var k in inputs.validGlobals) {
+            //
+            //        globals.db = path + '/sub245' + k;    // workaround to avoid lock database
+            //
+            //        var db = getDb(inputs.validGlobals[k], globals.db)
+            //        expect(db).to.not.be(null);
+            //        db.close();
+            //    }
+            //});
         });
     });
 
