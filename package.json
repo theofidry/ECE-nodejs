@@ -11,13 +11,16 @@
     "express": "^4.10.2",
     "express-session": "^1.9.1",
     "express-validator": "^2.7.0",
+    "fs": "0.0.2",
+    "http": "0.0.0",
     "jade": "^1.7.0",
     "jquery": "^2.1.1",
     "level": "^0.18.0",
     "leveldown": "0.10.0",
     "levelup": "^0.19.0",
     "method-override": "^2.3.0",
-    "serve-favicon": "^2.1.6"
+    "serve-favicon": "^2.1.6",
+    "socket.io": "^1.2.1"
   },
   "devDependencies": {
     "blanket": "^1.1.6",
@@ -45,6 +48,6 @@
     "type": "git",
     "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
   },
-  "author": "Theo FIDRY",
+  "author": ["Theo FIDRY", "Estelle LATRONICO"],
   "license": "ISC"
 }

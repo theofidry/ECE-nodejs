@@ -19,8 +19,10 @@
   .navbar-brand
     margin-left 0
     padding-bottom 0
-    padding-left 0
     padding-top 0
+
+    @media (min-width 765px)
+      padding-left 0
 
     img
       height 50px
@@ -154,3 +156,9 @@
     transform scaleY(1)
     -webkit-transform scaleX(1)
     box-shadow 0 5px 6px rgba(10, 10, 10, .4);
+
+#logs
+  td.btn
+    border: none;
+    margin: 2px auto 1px auto;
+    width: 100%;

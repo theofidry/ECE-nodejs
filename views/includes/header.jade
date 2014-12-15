@@ -18,4 +18,5 @@ header#header
                         li#home.active: a(href='/user/#{username}') Dashboard
                 if (session === true)
                     ul.nav.navbar-nav.navbar-right
+                        li#user: a(href='/user/#{username}') #{username}
                         li#logout: a(href='/logout') Log out
