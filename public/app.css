@@ -156,6 +156,11 @@
     box-shadow: 0 5px 6px rgba(10,10,10,0.4);
   }
 }
+#logs td.btn {
+  border: none;
+  margin: 2px auto 1px auto;
+  width: 100%;
+}
 @-moz-keyframes stretchdelay {
   0%, 40%, 100% {
     background-color: #184885;

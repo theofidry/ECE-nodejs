@@ -23,6 +23,12 @@ module.exports = function (grunt) {
         },
 
         copy: {
+            twb_js:     {
+                expand: true,
+                cwd:    'node_modules/bootstrap/dist/js',
+                src:    'bootstrap.min.js',
+                dest:   'public/js/'
+            },
             jquery: {
                 expand: true,
                 cwd:    'node_modules/jquery/dist',
