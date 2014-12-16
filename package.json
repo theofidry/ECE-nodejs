@@ -1,11 +1,12 @@
 {
-  "name": "HelloWorld",
+  "name": "nodejs-ECEProject",
   "version": "0.0.0",
   "description": "Hellow World project in node.js for Asynchronous Server Technologies course at ECE Paris.",
   "dependencies": {
     "body-parser": "^1.9.2",
     "cookie-parser": "^1.3.3",
     "cookie-session": "^1.1.0",
+    "depd": "^1.0.0",
     "errorhandler": "^1.2.2",
     "express": "^4.10.2",
     "express-session": "^1.9.1",
@@ -47,6 +48,6 @@
     "type": "git",
     "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
   },
-  "author": "Theo FIDRY",
+  "author": ["Theo FIDRY", "Estelle LATRONICO"],
   "license": "ISC"
 }
