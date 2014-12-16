@@ -1,5 +1,5 @@
 // Load application module
-var app = require('lib/app');
+var app = require(__dirname + '/lib/app');
 
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080,
     host = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
