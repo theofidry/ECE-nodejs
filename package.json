@@ -38,12 +38,11 @@
     "nid": "^0.3.2",
     "superagent": "^0.21.0"
   },
-  "bin": "bin/start.js",
   "scripts": {
-    "start": "node bin/start.js",
+    "start": "supervisor server.js",
     "test": "grunt test"
   },
-  "main": "bin/start.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
