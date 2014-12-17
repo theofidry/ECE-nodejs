@@ -13,10 +13,18 @@ header#header
             #navbar.collapse.navbar-collapse
                 ul.nav.navbar-nav
                     if (session !== true)
-                        li#home.active: a(href='/') Home
+                        li#home.active: a(href='/')
+                            i.fa.fa-home &nbsp;
+                            | Home
                     else
-                        li#home.active: a(href='/user/#{username}') Dashboard
+                        li#home.active: a(href='/user/#{username}')
+                            i.fa.fa-home &nbsp;
+                            | Dashboard
                 if (session === true)
                     ul.nav.navbar-nav.navbar-right
-                        li#user: a(href='/user/#{username}') #{username}
-                        li#logout: a(href='/logout') Log out
+                        li#user: a(href='/user/#{username}')
+                            i.fa.fa-user &nbsp;
+                            | #{username}
+                        li#logout: a(href='/logout')
+                            i.fa.fa-power-off &nbsp;
+                            | Log out

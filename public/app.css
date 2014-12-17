@@ -158,6 +158,7 @@
 }
 #logs td.btn {
   border: none;
+  border-radius: 0;
   margin: 2px auto 1px auto;
   width: 100%;
 }
