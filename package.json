@@ -15,8 +15,8 @@
     "http": "0.0.0",
     "jade": "^1.7.0",
     "jquery": "^2.1.1",
+    "jsondown": "^0.1.1",
     "level": "^0.18.0",
-    "leveldown": "0.10.0",
     "levelup": "^0.19.0",
     "method-override": "^2.3.0",
     "serve-favicon": "^2.1.6",
@@ -39,7 +39,7 @@
     "superagent": "^0.21.0"
   },
   "scripts": {
-    "start": "supervisor server.js",
+    "start": "node server.js",
     "test": "grunt test"
   },
   "main": "server.js",
@@ -47,6 +47,9 @@
     "type": "git",
     "url": "git@git.ortho-erp.com:theo.fidry/ast-helloworld.git"
   },
-  "author": ["Theo FIDRY", "Estelle LATRONICO"],
+  "author": [
+    "Theo FIDRY",
+    "Estelle LATRONICO"
+  ],
   "license": "ISC"
 }
