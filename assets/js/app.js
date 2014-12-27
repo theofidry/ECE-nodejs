@@ -1,52 +1,20 @@
 jQuery.fn.extend({
-    /**
-     * Get the user IP and notify the server of each connection.
-     *
-     * @param {string} method GET, POST, UPDATE, DELETE, by default is GET
-     * @param socket
-     * @param {Function} callback
-     */
-    submitConnectionData: function (ip, method, socket, callback) {
-
-        console.log('submitConnectionData');
-
-        method = method || 'GET';
-        var user = $('#user').text() || 'anonymous';
-        var ip = ip || 'unknown';
-
-        console.log({
-            ip:     ip,
-            method: method,
-            uri:    window.location.pathname,
-            user:   user,
-            time:   new Date()
-        });
-
-        socket.emit('connection', {
-            ip:     ip,
-            method: method,
-            uri:    window.location.pathname,
-            user:   user,
-            time:   new Date()
-        });
-
-        if (callback instanceof Function) {
-            setTimeout(callback, 500);
-        }
-    },
 
     /**
      * Function used for submitting the form as an AJAX request.
      */
     submitForm: function () {
-        $.ajax({
-            type:       "POST",
-            url:        "/",
-            cache:      false,
-            beforeSend: function () {
-                $('.loader').removeClass('hidden');
-            }
-        });
+
+        setTimeout(function () {
+            $.ajax({
+                type:       "POST",
+                url:        "/",
+                cache:      false,
+                beforeSend: function () {
+                    $('.loader').removeClass('hidden');
+                }
+            });
+        }, 500);
     }
 });
 
@@ -56,24 +24,22 @@ $().ready(function () {
         socket = io(),
         logsContainer = $('#logs').find('> tbody');
 
-    $.getJSON("http://jsonip.appspot.com?callback=?", function (data) {
-
-        console.log("ip");
-        console.log(data);
-        ip = data.ip;
-
-        if ($('#user').text() !== 'admin') {
-            $.fn.submitConnectionData(ip, null, socket, null);
-        }
-    });
+    //$.fn.getIP(function (data) {
+    //
+    //    ip = data.ip;
+    //
+    //    if ($('#user').text() !== 'admin') {
+    //        $.fn.submitConnectionData(ip, null, socket, null);
+    //    }
+    //});
 
     /**
      * Do the post request in AJAX.
      */
-    $('#login').submit(function (event) {
-
-        $.fn.submitConnectionData(ip, 'POST', socket, $.fn.submitForm);
-    });
+    //$('#login').submit(function (event) {
+    //
+    //    $.fn.submitConnectionData(ip, 'POST', socket, $.fn.submitForm);
+    //});
 
     /**
      * If admin panel, prints login data
@@ -109,5 +75,7 @@ $().ready(function () {
         }
     });
 
-
+    $(window).on('beforeunload', function () {
+        socket.close();
+    });
 });
