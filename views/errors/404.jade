@@ -6,7 +6,5 @@ html(lang="en")
         .container.error-page
             .error-msg
                 h1 Oups! 404 error.
-                p
-                    | Your page has not been found. Go back to#{' '}
-                    a(href='/') Home page
-                    | .
+                p Your page has not been found.
+                button.btn.btn-danger(onclick='window.history.back()') Go back

@@ -8,16 +8,13 @@ $().ready(function () {
      */
     $('#login').submit(function (event) {
 
-        setTimeout(function () {
-            $.ajax({
-                type:       'POST',
-                url:        '/login',
-                cache:      false,
-                beforeSend: function () {
-                    $('.loader').removeClass('hidden');
-                }
-            });
-        }, 5000);
+        $('.loader').removeClass('hidden');
+
+        $.ajax({
+            type:  'POST',
+            url:   '/login',
+            cache: false
+        });
     });
 
     /**
