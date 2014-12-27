@@ -1,78 +1,57 @@
-jQuery.fn.extend({
+$().ready(function () {
+
+    var socket = io(),
+        logsContainer = $('#logs').find('tbody');
 
     /**
-     * Function used for submitting the form as an AJAX request.
+     * Do the login post request in AJAX.
      */
-    submitForm: function () {
+    $('#login').submit(function (event) {
 
         setTimeout(function () {
             $.ajax({
-                type:       "POST",
-                url:        "/",
+                type:       'POST',
+                url:        '/login',
                 cache:      false,
                 beforeSend: function () {
                     $('.loader').removeClass('hidden');
                 }
             });
-        }, 500);
-    }
-});
-
-$().ready(function () {
-
-    var ip,
-        socket = io(),
-        logsContainer = $('#logs').find('> tbody');
-
-    //$.fn.getIP(function (data) {
-    //
-    //    ip = data.ip;
-    //
-    //    if ($('#user').text() !== 'admin') {
-    //        $.fn.submitConnectionData(ip, null, socket, null);
-    //    }
-    //});
-
-    /**
-     * Do the post request in AJAX.
-     */
-    //$('#login').submit(function (event) {
-    //
-    //    $.fn.submitConnectionData(ip, 'POST', socket, $.fn.submitForm);
-    //});
+        }, 5000);
+    });
 
     /**
      * If admin panel, prints login data
      */
-    socket.on('logsData', function (data) {
+    socket.on('userData', function (data) {
 
-        if ($('#user').text() === 'admin') {
+        //if ($('#user').text() === 'admin') {
 
-            var newRow = '<tr>';
+        var newRow = '<tr>';
 
-            for (k in data) {
-                if (k === 'method') {
-                    if (data.method === 'GET') {
-                        newRow += '<td class="btn btn-success">';
-                    }
-                    else if (data.method === 'POST') {
-                        newRow += '<td class="btn btn-danger">';
-                    }
-                    else {
-                        newRow += '<td class="btn btn-info">';
-                    }
+        for (k in data) {
+            if (k === 'method') {
+                if (data.method === 'GET') {
+                    newRow += '<td class="btn btn-success">';
+                }
+                else if (data.method === 'POST') {
+                    newRow += '<td class="btn btn-danger">';
                 }
                 else {
-                    newRow += '<td>';
+                    newRow += '<td class="btn btn-info">';
                 }
-
-                newRow += data[k] + '</td>';
+            }
+            else {
+                newRow += '<td>';
             }
 
-            newRow += '</tr>';
-
-            logsContainer.append(newRow)
+            newRow += data[k] + '</td>';
         }
+
+        newRow += '</tr>';
+
+        logsContainer.append(newRow);
+        //}
     });
 
     $(window).on('beforeunload', function () {

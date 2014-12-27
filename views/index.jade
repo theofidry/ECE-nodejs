@@ -10,7 +10,7 @@ block content
                 .rect1
                 .rect2
                 .rect3
-    form#login.form-signin(role='form', action='', method='POST')
+    form#login.form-signin(role='form', action='/login', method='POST')
         h2.form-signin-heading
             | Please sign in
         if errors !== undefined && errors.msg !== undefined
