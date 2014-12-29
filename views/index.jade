@@ -3,7 +3,7 @@ extend layout
 block content
     h1.page-header
         | Login to access to secure session.
-    .loader.hidden
+    //.loader.hidden
         .loader-wrapper.center-block
             p Connecting
             .spinner
@@ -33,5 +33,31 @@ block content
             input#password.form-control(type='password', name='password', pattern='.{4,32}', placeholder='password',
         required)
         button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign in
+      form#signup.form-signin(role='form', action='/signup', method='POST')
+          h2.form-signin-heading
+              | Please sign up
+          if errors !== undefined && errors.msg !== undefined
+              p.bg-danger #{errors.msg}
+          label.sr-only(for='username') Username:#{' '}
+          if errors !== undefined && errors.user === true
+              input#username.form-control.has-error(type='text', name='username', pattern='[A-Za-z]{2,32}',
+              placeholder='Username',
+              required)
+          else
+              input#username.form-control(type='text', name='username', pattern='[A-Za-z]{2,32}',
+              placeholder='Username', required)
+          //TODO: change the pattern of the username contrôle to allow points or -, ex to do "theo.fidry" or "theo-fidry"
+          //ex to allow "theo.fidry"...
+          label.sr-only(for'mail') Email:#{' '}
+          input#email.form-control(type='text', name='email', placeholder='Email', required)
+          label.sr-only(for'password') Password:#{' '}
+          if errors !== undefined && errors.password === true
+              input#password.form-control.has-error(type='password', name='password', pattern='.{4,32}', placeholder='password',
+              required)
+          else
+              input#password.form-control(type='password', name='password', pattern='.{4,32}', placeholder='password',
+          required)
+          button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign up
+  
     
       
