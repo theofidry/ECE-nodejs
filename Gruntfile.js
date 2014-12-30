@@ -8,43 +8,10 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
 
-        clean: {
-            css: ['assets/styl/app.css']
-        },
-
-        concat: {
-            options: {
-                separator: '\n'
-            },
-            dist:    {
-                src:  ['assets/styl/lib/*.css', 'assets/styl/app.css'],
-                dest: 'public/app.css'
-            }
-        },
-
-        copy: {
-            twb_js:     {
-                expand: true,
-                cwd:    'node_modules/bootstrap/dist/js',
-                src:    'bootstrap.min.js',
-                dest:   'public/js/'
-            },
-            jquery: {
-                expand: true,
-                cwd:    'node_modules/jquery/dist',
-                src:    'jquery.min.js',
-                dest:   'public/js/'
-            },
-            js:     {
-                expand: true,
-                cwd:    'assets/js',
-                src:    '*',
-                dest:   'public/js/'
-            }
-        },
+        clean: ['public/*.js', 'public/*.css'],
 
         mochaTest: {
-            test: {
+            test:     {
                 options: {
                     reporter: 'spec',
                     // Require blanket wrapper here to instrument other required
@@ -56,20 +23,20 @@ module.exports = function (grunt) {
                     // NNB. As mocha is 'clever' enough to only run the tests once for
                     // each file the following coverage task does not actually run any
                     // tests which is why the coverage instrumentation has to be done here
-                    require: 'coverage/blanket'
+                    require:  'coverage/blanket'
                 },
-                src: ['test/**/*.js']
+                src:     ['test/**/*.js']
             },
             coverage: {
                 options: {
-                    reporter: 'html-cov',
+                    reporter:    'html-cov',
                     // use the quiet flag to suppress the mocha console output
-                    quiet: true,
+                    quiet:       true,
                     // specify a destination file to capture the mocha
                     // output (the quiet option does not suppress this)
                     captureFile: 'coverage.html'
                 },
-                src: ['test/**/*.js']
+                src:     ['test/**/*.js']
             }
         },
 
@@ -80,23 +47,37 @@ module.exports = function (grunt) {
                     lineos:   true
                 },
                 files:   {
-                    'assets/styl/app.css': 'assets/styl/app.styl'
+                    'public/app.min.css': 'assets/styl/app.styl'
                 }
             },
             prod: {
                 files: {
-                    'assets/styl/app.css': 'assets/styl/app.styl'
+                    'public/app.min.css': 'assets/styl/app.styl'
                 }
             }
         },
 
-        symlink: {
+        uglify: {
             options: {
-                overwrite: true
+                compress: {
+                    drop_console: true
+                }
             },
-            tw_css:  {
-                src:  'node_modules/bootstrap/dist/css/bootstrap.min.css',
-                dest: 'assets/styl/lib/bootstrap.css'
+            dev:     {
+                options: {
+                    beautify: {
+                        width:    120,
+                        beautify: true
+                    }
+                },
+                files:   {
+                    'public/app.min.js': ['assets/js/*.js']
+                }
+            },
+            prod:    {
+                files: {
+                    'public/app.min.js': ['assets/js/*.js']
+                }
             }
         },
 
@@ -120,23 +101,21 @@ module.exports = function (grunt) {
 
     // Load plugins
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-stylus');
-    grunt.loadNpmTasks('grunt-contrib-symlink');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-mocha-test');
 
 
     // Custom tasks
-    grunt.registerTask('css', ['stylus:dev', 'concat', 'clean:css']);
-    grunt.registerTask('css-prod', ['stylus:prod', 'concat', 'clean:css']);
+    grunt.registerTask('css', ['stylus:dev']);
+    grunt.registerTask('css-prod', ['stylus:prod']);
 
-    grunt.registerTask('js', ['copy:jquery', 'copy:js']);
-    grunt.registerTask('js-prod', ['copy:jquery', 'copy:js']);
+    grunt.registerTask('js', ['uglify:dev']);
+    grunt.registerTask('js-prod', ['uglify:prod']);
 
-    grunt.registerTask('build', ['css', 'js']);
-    grunt.registerTask('publish', ['css-prod', 'js-prod']);
+    grunt.registerTask('build', ['clean', 'css', 'js']);
+    grunt.registerTask('publish', ['clean', 'css-prod', 'js-prod']);
     grunt.registerTask('start', ['build', 'watch']);
 
     grunt.registerTask('test', ['mochaTest']);
