@@ -49,7 +49,7 @@ Start app:
 npm start
 ```
 
-Default admin user: admin | admin
+Default admin user: `admin` or `admin@example.com` | `admin`
 
 If you wish to change the port the app is running on, just change them in the `bin/start.js` file. The default admin
 user may be changed in `lib/config/globals.js`.
