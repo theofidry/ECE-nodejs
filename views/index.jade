@@ -13,6 +13,9 @@ block content
                 .rect2
                 .rect3
 
+    if signup_msg !== undefined && signup_msg !== undefined
+        p.bg-success #{signup_msg}
+
     // Login form
     form#login.form-signin(role='form', action='/login', method='POST')
         h2.form-signin-heading
@@ -21,14 +24,12 @@ block content
             p.bg-danger #{errors.msg}
         label.sr-only(for='username') Username:#{' '}
         if errors !== undefined && errors.user === true
-            input#username.form-control.has-error(type='text', name='username', pattern='[A-Za-z]{2,32}',
-            placeholder='Username',
+            input#username.form-control.has-error(type='text', name='username', pattern='.{2,32}',
+            placeholder='Username or email',
             required)
         else
-            input#username.form-control(type='text', name='username', pattern='[A-Za-z]{2,32}',
-            placeholder='Username', required)
-        //TODO: change the pattern of the username contrôle to allow points or -, ex to do "theo.fidry" or "theo-fidry"
-        //ex to allow "theo.fidry"...
+            input#username.form-control(type='text', name='username', pattern='.{2,32}',
+            placeholder='Username or email', required)
         label.sr-only(for'password') Password:#{' '}
         if errors !== undefined && errors.password === true
             input#password.form-control.has-error(type='password', name='password', pattern='.{4,32}', placeholder='password',
@@ -39,28 +40,28 @@ block content
         button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign in
 
     // Sign up form
-    //form#signup.form-signin(role='form', action='/signup', method='POST')
-    //    h2.form-signin-heading
-    //        | Please sign up
-    //    if errors !== undefined && errors.msg !== undefined
-    //        p.bg-danger #{errors.msg}
-    //    label.sr-only(for='username') Username:#{' '}
-    //    if errors !== undefined && errors.user === true
-    //        input#username.form-control.has-error(type='text', name='username', pattern='[A-Za-z]{2,32}',
-    //        placeholder='Username',
-    //        required)
-    //    else
-    //        input#username.form-control(type='text', name='username', pattern='[A-Za-z]{2,32}',
-    //        placeholder='Username', required)
-    //    //TODO: change the pattern of the username contrôle to allow points or -, ex to do "theo.fidry" or "theo-fidry"
-    //    //ex to allow "theo.fidry"...
-    //    label.sr-only(for'mail') Email:#{' '}
-    //    input#email.form-control(type='text', name='email', placeholder='Email', required)
-    //    label.sr-only(for'password') Password:#{' '}
-    //    if errors !== undefined && errors.password === true
-    //        input#password.form-control.has-error(type='password', name='password', pattern='.{4,32}', placeholder='password',
-    //        required)
-    //    else
-    //        input#password.form-control(type='password', name='password', pattern='.{4,32}', placeholder='password',
-    //        required)
-    //    button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign up
+    form#signup.form-signin(role='form', action='/signup', method='POST')
+        h2.form-signin-heading
+            | Please sign up
+        if errors !== undefined && errors.msg !== undefined
+            p.bg-danger #{errors.msg}
+        label.sr-only(for='username') Username:#{' '}
+        if errors !== undefined && errors.user === true
+            input#signup_username.form-control.has-error(type='text', name='signup_username', pattern='[A-Za-z]{2,32}',
+            placeholder='Username',
+            required)
+        else
+            input#signup_username.form-control(type='text', name='signup_username', pattern='[A-Za-z]{2,32}',
+            placeholder='Username', required)
+        label.sr-only(for'mail') Email:#{' '}
+        if errors !== undefined && errors.user === true
+            input#signup_email.form-control.has-error(type='email', name='signup_email', placeholder='Email', required)
+        else
+            input#signup_email.form-control(type='email', name='signup_email' placeholder='Email', required)
+        label.sr-only(for'password') Password:#{' '}
+        if errors !== undefined && errors.password === true
+            input#signup_password.form-control.has-error(type='password', name='signup_password', pattern='.{4,32}', placeholder='password',
+            required)
+        else
+            input#signup_password.form-control(type='password', name='signup_password', pattern='.{4,32}', placeholder='password', required)
+        button.btb.btn-lg.btn-primary.btn-block(type='submit') Sign up
