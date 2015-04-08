@@ -1,5 +1,9 @@
 # ECE Project
 
+<a href="http://www.ece.fr">
+    <img src="http://upload.wikimedia.org/wikipedia/fr/thumb/f/f8/Logo_ECE_Paris.svg/1024px-Logo_ECE_Paris.svg.png" width="auto" height="75px" />
+</a>
+
 This is a simple node.js project for the Asynchronous Server Technologies course at ECE Paris.
 
 Technology used:
